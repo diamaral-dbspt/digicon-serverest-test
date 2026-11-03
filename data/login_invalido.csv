@@ -1,0 +1,3 @@
+*** Test Cases ***,${email},${senha},${alerta}
+Senha incorreta,usuario@test.com,senha123,Email e/ou senha inválidos
+Email vazio,,senha@123,Email é obrigatório

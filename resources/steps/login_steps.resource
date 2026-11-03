@@ -35,3 +35,9 @@ devo visualizar as opções restritas
 não devo mais visualizar a tela de login
     Page Should Not Contain            Login
     Capture Page Screenshot
+
+
+sistema deve apresentar mensagem de alerta
+    [Arguments]        ${alerta}
+
+    Wait Until Page Contains         ${alerta}    timeout=10s

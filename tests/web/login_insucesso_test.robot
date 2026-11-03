@@ -5,7 +5,7 @@ Biblioteca          SeleniumLibrary
 
 Recurso          ../../resources/configs/qa.resource
 
-Test Setup       Open Browser    ${URL}/login    ${BROWSER}
+Test Setup       Open Browser    ${URL}    ${BROWSER}
 Test Teardown    Close Browser
 
 Test Tags        login
