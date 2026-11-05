@@ -1,4 +1,7 @@
+language: pt-BR
+
 *** Settings ***
+
 Documentation       Teste usando datapool CSV
 
 Library             SeleniumLibrary
