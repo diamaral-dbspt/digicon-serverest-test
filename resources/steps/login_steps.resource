@@ -41,3 +41,6 @@ sistema deve apresentar mensagem de alerta
     [Arguments]        ${alerta}
 
     Wait Until Page Contains         ${alerta}    timeout=10s
+
+devo visualizar tela de administrador
+    Wait Until Page Contains            Este é seu sistema para administrar seu ecommerce.        timeout=5s
