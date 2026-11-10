@@ -76,3 +76,39 @@ Executar Limpeza Do Produto
     IF    $id is not None
         Excluir E Confirmar Exclusão    ${id}    ${headers}
     END
+
+Aguardar produto disponível
+    [Arguments]    ${id}
+
+    WHILE    True    limit=10
+    ...    on_limit_message=Produto ${id} não ficou disponível após 10 tentativas
+
+        ${resp}=    GET On Session
+        ...    serverest
+        ...    /produtos/${id}
+        ...    expected_status=any
+
+        IF    ${resp.status_code} == 200
+            BREAK
+        END
+
+        Sleep    1s
+    END
+
+
+Excluir produto se possível
+    [Arguments]    ${id}    ${headers}
+
+    ${resp}=    DELETE On Session
+    ...    serverest
+    ...    /produtos/${id}
+    ...    headers=${headers}
+    ...    expected_status=any
+
+    IF    ${resp.status_code} == 200 or ${resp.status_code} == 204
+        Log    Produto ${id} excluído com sucesso
+    ELSE IF    ${resp.status_code} == 400
+        Log    Produto ${id} não pôde ser excluído    WARN
+    ELSE
+        Fail    Falha ao excluir produto ${id}. Status: ${resp.status_code}
+    END
